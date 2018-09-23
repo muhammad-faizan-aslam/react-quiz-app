@@ -7,8 +7,9 @@ import swal from 'sweetalert' ;
 class SIGNIN extends Component {
   
     constructor(props){
-        super()
+        super(props)
         this.state={
+        
           username:'',
           email:'',
           password :'',
@@ -39,13 +40,17 @@ class SIGNIN extends Component {
           {
               if(userlist[i].email === email && userlist[i].password === password)
               {
-                  swal("Login Successfully !" ,'','success');
+                let user_info , userNumber ;
+                swal("Login Successfully !" ,'','success');
+                user_info = userlist[i];
+                userNumber = i;
+                
+                   this.props.kyauserloginhai(true,userNumber,user_info);
                   this.setState({username :'' , email:'',password:'' ,userlist:'',errinputStyle:{}})
 
                 //   console.log("done");
                   logincheck = true;
                  console.log('login',logincheck)
-                 this.props.kyauserloginhai(true);
                  break;
               }
           }
@@ -100,7 +105,7 @@ class SIGNIN extends Component {
           </div>
 
           <button type="submit" className="btn formbtn">Login</button>
-          <p  className="gotosigin">Don't have an account ?<a href="" onClick={()=>this.props.gotosignup(false)}>  SIGNUP</a></p>
+          {/* <p  className="gotosigin">Don't have an account ?<a  onClick={()=> this.props.gotosignup(true)}>  SIGNUP</a></p> */}
         </form>
           
       </div>

@@ -1,0 +1,29 @@
+.menubar {
+    background-color: dodgerblue;
+}
+.togglemenu {
+    background-color:gray;
+}
+.togglemenu span {
+   background-color:white;
+}
+.menuitem  li > a{
+        color:white;
+        margin-top:25px ;
+}
+
+ .menuitem  li > a:hover{
+        color:white;
+        padding-top:5px ;
+        border-bottom: 1px white solid;
+       background-color:transparent;
+      
+}
+.webname{
+    color: white;
+}
+
+.webname:hover {
+    color: white;
+}
+   

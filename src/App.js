@@ -1,35 +1,34 @@
 import React, { Component } from 'react';
 import SIGNUP from './screens/SignUp/SignUp';
 import SIGNIN from './screens/SignIn/SignIn';
-import QUIZPAGE from './screens/Quiz/QuizPage';
-import SUBQUIZ from './screens/Quiz/SubQuiz';
+import HEADERNAV from './screens/HeaderNav/HeaderNav'
+import QUIZMAIN from './screens/Quiz/QuizMain'
 // import QUIZTEST from './screens/Quiz/QuizTest';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import swal from 'sweetalert' ;
+// import swal from 'sweetalert' ;
+// import HEADERNAV from './screens/HeaderNav/HeaderNav';
 
 
 class App extends Component {
   constructor(){
     super()
     this.state={
-      email:'',
-      password :'',
+      usernumber :'',
+      user_info :'',
       userlist: JSON.parse(localStorage.getItem('userlist')) || [] ,
-      signup :true ,
-      user : false ,
-      signin: false ,
-      issubquiz : false ,
-      quizname :'',
-      quizindex :''
+      signup :false ,
+      isUser : '' ,
+      signin: false 
      
     }
     this.onSignup = this.onSignup.bind(this);
     this.gotosignin = this.gotosignin.bind(this);
     this.gotosignup = this.gotosignup.bind(this);
     this.onLogin = this.onLogin.bind(this);
-    this.onLogout = this.onLogout.bind(this);
-    this.gotosubquiz = this.gotosubquiz.bind(this);
+    this.logOut = this.logOut.bind(this);
+    // this.onLogout = this.onLogout.bind(this);
+    // this.gotosubquiz = this.gotosubquiz.bind(this);
 
   }
   onSignup(userlist){
@@ -37,50 +36,48 @@ class App extends Component {
   
   }
 
-gotosubquiz(quizname,quizindex,bool){
-  
-  this.setState({issubquiz:bool, quizname : quizname , quizindex :quizindex , user:false})
-  console.log(quizindex,quizname,bool)
-}
-  gotosignin(bool){
-    this.setState({signin:bool,signup:false})
+
+  gotosignin(bool1,bool2){
+    this.setState({signin:bool1,signup:bool2})
   }
 
-  gotosignup(bool){
-    this.setState({signup:bool})
+  gotosignup(bool1,bool2){
+    this.setState({signup:bool1,signin:bool2})
   }
 
-  onLogin(bool){
-    this.setState({user:bool,signup:false,signin:false})
+  onLogin(bool,usernumber,user){
+    const {isUser} = this.state;
+    this.setState({isUser:bool,usernumber:usernumber,user_info:user,signin:false,signup:false})
+    console.log("onlogin", isUser)
+    
   }
 
-  onLogout(bool){
-    this.setState({user:bool,signup:false,signin:true})
+
+  logOut(){
+    this.setState({isUser:false,signup:false,signin:false,user_info:''})
   }
+
   render() {
-    const {signup ,user,signin ,issubquiz,quizname} = this.state;
+    const {signup ,isUser,signin,user_info,usernumber} = this.state;
+    console.log("onlogin", isUser)
+
     return (
       <div>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-      
-      </div>
-      <div>
-            {/* { !user && <QUIZTEST logouthoja={this.onLogout} />}  */}
-            { issubquiz && <SUBQUIZ  quizname={quizname}  />} 
-            { !user && <QUIZPAGE logouthoja={this.onLogout}  gotosubquiz={this.gotosubquiz}/>} 
-
-            { signin &&
-            <SIGNIN   gotosignup={this.gotosignup} kyauserloginhai={this.onLogin}/> }
-              { !signup &&
-               <SIGNUP  jabsignupho={this.onSignup}  gotosignin={this.gotosignin}   />
-               
-               }
-      </div>
-      </div>
+           <HEADERNAV 
+           gotosignup={this.gotosignup} 
+           gotosignin={this.gotosignin} 
+           logout={this.logOut}
+           isUser={isUser} 
+           usernumber={usernumber}
+           user_info={user_info} 
+           
+           />
+            { signin && <SIGNIN    kyauserloginhai={this.onLogin}/> }
+            {signup && <SIGNUP    />}
+            { isUser && < QUIZMAIN  user_info={user_info}  usernumber={usernumber} /> }
+          </div>     
+              
+     
     );
   }
 }

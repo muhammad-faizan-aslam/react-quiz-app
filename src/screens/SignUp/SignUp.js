@@ -7,7 +7,7 @@ import swal from 'sweetalert' ;
 class SIGNUP extends Component {
   
   constructor(props){
-    super()
+    super(props)
     this.state={
       username:'',
       email:'',
@@ -40,9 +40,9 @@ class SIGNUP extends Component {
             }
 
             if(user){
-              userlist.push({username,email,password}) ;   
+              userlist.push({username,email,password,quizresult:[]}) ;   
               localStorage.setItem('userlist',JSON.stringify(userlist));
-              this.props.jabsignupho(userlist);
+              // this.props.jabsignupho(userlist);
               this.setState({username :'' , email:'',password:'' ,userlist:''})
               swal("Successfully Registered !", "", "success")
             }
@@ -99,7 +99,7 @@ class SIGNUP extends Component {
           </div>
 
           <button type="submit" className="btn formbtn">Register</button>
-          <p  className="gotosigin">Already You Have An Account ?<a onClick={()=>this.props.gotosignin(true)}>  SigIn</a></p>
+          {/* <p  className="gotosigin">Already You Have An Account ?<a onClick={()=>this.props.gotosignup(false)}>  SigIn</a></p> */}
         </form>
           
       </div>

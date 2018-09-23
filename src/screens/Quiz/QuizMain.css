@@ -1,0 +1,46 @@
+
+       .quizlist:hover {
+        background-color:lightblue;
+        cursor: pointer;
+    }
+
+    /* keyform */
+
+.crossbtn {
+    font-size: 20px;
+    cursor: pointer;
+    }
+
+ 
+    /*  QUIZ QUESTION PART STLYE */
+
+    .quizquestion-main {
+        width: 60%;
+        margin: auto;
+}
+
+.quizquestion-title{
+    border-bottom: 2px white solid;
+    padding-bottom: 2px;
+ }
+
+.quizquestion span {
+padding-right: 5px;
+}
+
+
+
+       /* result-info style */
+.result-info-div{
+width: 60% ;
+margin: auto;
+}
+       .result-info-div p {
+        font-weight: bold;
+     }
+     .result-info {
+         width: 80%;
+         margin: auto;
+         margin-bottom: 20px;
+         text-align: center;
+     }
